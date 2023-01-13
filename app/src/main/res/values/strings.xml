@@ -1,19 +1,34 @@
 <resources>
     <string name="app_name">TowerOfHanoi</string>
-    <string name="disclaimer_text"><center>Terms of Use</center>\n\nPlease ensure that before using
+    <string name="disclaimer_text"><center>Terms of Use</center>
+        \n\nPlease ensure that before using
         this application that you expressly understand and agree that
         your use of this application is at your sole risk and that the application is provided
         “as is” and “as available” without warranty of any kind, to the maximum extent permitted by
-        applicable law.\n\nOnce the application is available to you through your google account,
+        applicable law.
+        \n\nOnce the application is available to you through your google account,
         you should check the application as soon as reasonably possible to ensure that it functions
         and performs as stated, and notify us or Provider as soon as reasonably possible if you
         find any errors or defect.
     </string>
     <string name="disclaimer_accept">I accept these terms.</string>
     <string name="dont_show_next_time">Do not show next time?</string>
-    <string name="intro_welcome">Welcome\n\nblaa</string>
-    <string name="intro_welcome2">blaa\n\n
-        Graphics library credit: <a href="https://android.processing.org/">https://android.processing.org/</a></string>
+    <string name="intro_welcome">Welcome
+        \n\nThe objective of the puzzle is to move the entire stack to the last rod.</string>
+    <string name="intro_welcome2">The Tower of Hanoi (also called The problem of Benares Temple[1]
+        or Tower of Brahma or Lucas\' Tower[2] and sometimes pluralized as Towers, or simply pyramid
+        puzzle[3]) is a mathematical game or puzzle consisting of three rods and a number of disks
+        of various diameters, which can slide onto any rod. The puzzle begins with the disks stacked
+        on one rod in order of decreasing size, the smallest at the top, thus approximating a
+        conical shape. The objective of the puzzle is to move the entire stack to the last rod,
+        obeying the following rules:
+        \n\n1. Only one disk may be moved at a time.\n
+        \n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of
+        another stack or on an empty rod.
+        \n3. No disk may be placed on top of a disk that is smaller than it.
+        \n\nWith 3 disks, the puzzle can be solved in 7 moves. The minimal number of moves required to solve a Tower of Hanoi puzzle is 2n − 1, where n is the number of disks.\n\n
+        From: <a hrefs="https://en.wikipedia.org/wiki/Tower_of_Hanoi>">https://en.wikipedia.org/wiki/Tower_of_Hanoi</a>
+        \nGraphics library credit: <a href="https://android.processing.org/">https://android.processing.org/</a></string>
     <string name="into_donate_text">Please make a financial gift of your choice to support my software projects.
         See menu options top right - help feed the cat.</string>
 </resources>

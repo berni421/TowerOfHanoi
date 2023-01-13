@@ -31,46 +31,38 @@ class Sketch : PApplet() {
         null // or {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_CALENDAR};
     var toh = Towers()
     var msg = ""
-    val jobScope = CoroutineScope(Dispatchers.Default)
-    lateinit var job: Job
+    lateinit var moveJob: Job
 
     override fun settings() {
         size(displayWidth, displayHeight, P3D)
     }
 
     suspend fun job(future: Int) = withContext(Dispatchers.IO) {
-        try {
-            listOf(
-                launch { // launch a new coroutine and continue
-                    delay(future)
-                    move(
-                        Towers.numberOfDisks,
-                        toh.columns[Location.LEFT.ordinal],
-                        toh.columns[Location.RIGHT.ordinal],
-                        toh.columns[Location.CENTER.ordinal]
-                    )
-                }
-            ).joinAll()
-            false
-        } catch (e: Throwable) {
-            true
+        launch { // launch as parallel coroutine, but suspend
+            delay(future)
+            move(
+                Towers.numberOfDisks,
+                toh.columns[Location.LEFT.ordinal],
+                toh.columns[Location.RIGHT.ordinal],
+                toh.columns[Location.CENTER.ordinal]
+            )
         }
     }
 
-    fun startJobIn(future: Int) {
-        job = jobScope.launch { job(future) }
+    fun startJobIn(future: Int): Job {
+        return CoroutineScope(Dispatchers.Default).launch { job(future) }
     }
 
-    fun jobDone(): Boolean {
+    fun jobDone(job: Job): Boolean {
         return job.isCompleted
     }
 
-    fun jobRunning(): Boolean {
+    fun jobRunning(job: Job): Boolean {
         return job.isActive
     }
 
-    fun stopJob() {
-        if (jobRunning()) {
+    fun stopJob(job: Job) {
+        if (jobRunning(job)) {
             job.cancel()
         }
     }
@@ -85,8 +77,8 @@ class Sketch : PApplet() {
         strokeWeight(20f)
         textSize(textSize)
         toh = Towers()
-        startJobIn(2000)
-        frameRate(1f)
+        moveJob = startJobIn(2000)
+        frameRate(2f)
         Log.i(TAG, "end setup")
     }
 
@@ -126,6 +118,7 @@ class Sketch : PApplet() {
         drawBody()
         // Display current tower state
         toh.display(this)
+//        Log.i(TAG, "frameRate: " + frameRate)
     }
 
     fun drawBody() {
@@ -134,7 +127,7 @@ class Sketch : PApplet() {
         text("Towers of Hanoi", width / 2f, height * 0.25f)
         text(msg, width / 2f, height * 0.8f)
         // check if job done
-        if (jobDone()) {
+        if (jobDone(moveJob)) {
             text("TAP to restart", width / 2f, height * 0.9f)
             noLoop()
         }
@@ -163,10 +156,10 @@ class Sketch : PApplet() {
 
     override fun touchStarted() {
         Log.i(TAG, "start touchStarted")
-        if (!jobRunning()) {
+        if (!jobRunning(moveJob)) {
             toh = Towers()
             loop()
-            startJobIn(2000)
+            moveJob = startJobIn(2000)
         }
     }
 
