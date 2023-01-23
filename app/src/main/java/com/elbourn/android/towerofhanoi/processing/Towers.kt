@@ -21,7 +21,7 @@ class Towers {
             Log.i(TAG, "Location: " + tower.pos)
             pApplet.push()
             val x = (1f + tower.pos.ordinal) * (pApplet.width / (1f + Location.values().size))
-            val y = pApplet.height / 2f + Disk.diskHeight * numberOfDisks
+            val y = pApplet.height / 2 + Disk.diskHeight * numberOfDisks / 2
             pApplet.translate(x, y, 0f)
             pApplet.line(
                 0f,

@@ -100,6 +100,7 @@ class Sketch : PApplet() {
         // move the top disk
         val disk = sourceTower.pile.getTopDisk()
         msg = "Moving disk: " + disk.size +
+                "\n" +
                 " from " + sourceTower.pos.name +
                 " to " + destinationTower.pos.name
         Log.i(TAG, msg)
@@ -124,11 +125,11 @@ class Sketch : PApplet() {
     fun drawBody() {
         push()
         textAlign(CENTER)
-        text("Towers of Hanoi", width / 2f, height * 0.25f)
+        text("Towers of Hanoi", width / 2f, height * 0.1f)
         text(msg, width / 2f, height * 0.8f)
         // check if job done
         if (jobDone(moveJob)) {
-            text("TAP to restart", width / 2f, height * 0.9f)
+            text("TAP to restart", width / 2f, height * 0.95f)
             noLoop()
         }
         pop()

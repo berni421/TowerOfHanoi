@@ -23,6 +23,10 @@ class MainActivity : OptionsMenu() {
         sketch.onNewIntent(intent)
     }
 
+    override fun onBackPressed() {
+        finishAffinity()
+    }
+
     companion object {
         var sketch = ProcessingFragment.sketch
     }
