@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.elbourn.android.towerofhanoi.fragments.IntroFragment
 
 open class OptionsMenu : AppCompatActivity() {
-    val TAG:String = javaClass.simpleName
+    val TAGOM:String = javaClass.simpleName
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -43,11 +43,11 @@ open class OptionsMenu : AppCompatActivity() {
         val subscriptionsIntroOff = !item.isChecked
         item.isChecked = subscriptionsIntroOff
         IntroFragment.setIntroCheckBox(context, subscriptionsIntroOff)
-        Log.i(TAG, "subscriptionsIntroOff: $subscriptionsIntroOff")
+        Log.i(TAGOM, "subscriptionsIntroOff: $subscriptionsIntroOff")
     }
 
     fun startDonationWebsite() {
-        Log.i(TAG, "start startDonationWebsite")
+        Log.i(TAGOM, "start startDonationWebsite")
         val context: Context = getApplicationContext()
         runOnUiThread(Runnable {
             val msg = "Starting browser to feed the cat ..."
@@ -56,6 +56,6 @@ open class OptionsMenu : AppCompatActivity() {
         val url = "https://www.elbourn.com/feed-the-cat/"
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
-        Log.i(TAG, "end startDonationWebsite")
+        Log.i(TAGOM, "end startDonationWebsite")
     }
 }

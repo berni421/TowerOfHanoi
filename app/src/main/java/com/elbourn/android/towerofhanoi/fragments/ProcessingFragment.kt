@@ -22,16 +22,21 @@ class ProcessingFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_processing, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i(TAG, "started onResume")
+        processingFragment.setView(view.findViewById(R.id.frameLayout01), activity)
+    }
+
+
     override fun onResume() {
         super.onResume()
-        Log.i(TAG, "started onResume")
-        processingFragment.setView(view?.findViewById(R.id.frameLayout01), activity)
-        sketchVisible = true
+        sketch = Sketch()
+        processingFragment = PFragment(sketch)
     }
 
     companion object {
-        val sketch: PApplet = Sketch()
-        val processingFragment = PFragment(sketch)
-        var sketchVisible = false
+        var sketch = Sketch()
+        var processingFragment = PFragment(sketch)
     }
 }

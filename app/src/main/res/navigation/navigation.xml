@@ -27,5 +27,5 @@
     <fragment
         android:id="@+id/ProcessingFragment"
         android:name="com.elbourn.android.towerofhanoi.fragments.ProcessingFragment"
-        android:label="BlobFragment" />
+        android:label="ProcessingFragment" />
 </navigation>

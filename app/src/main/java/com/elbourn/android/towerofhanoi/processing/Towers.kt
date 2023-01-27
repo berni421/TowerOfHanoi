@@ -117,7 +117,7 @@ class Disk(val size: Int) {
         pApplet.text(size.toString(),
             -pApplet.textWidth(size.toString())/2f,
             diskHeight/2 - Sketch.textSize/2f,
-            10f);
+            10f)
         pApplet.pop()
     }
 
